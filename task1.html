@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+<form>
+    <label for="name">ПІБ</label>
+    <input type="text" id="name"><br>
+    <label for="group">Група</label>
+    <input type="text" id="group"><br>
+    <label for="phone">Телефон</label>
+    <input type="text" id="phone"><br>
+    <label for="address">Адреса</label>
+    <input type="text" id="address"><br>
+    <label for="email">Email</label>
+    <input type="text" id="email"><br>
+    <button type="button" id="check">Перевірити</button>
+</form>
+<div id="output"></div>
+<script src="validator.js"></script>
+<script>
+    document.querySelector("button").addEventListener("click", function () {
+        let formValid = true;
+
+        setDefault(document.querySelectorAll("input"));
+
+        const nameInput = document.querySelector("#name");
+        if (!isName(nameInput.value)) {
+            setError(nameInput);
+            formValid = false;
+        }
+
+        const groupInput = document.querySelector("#group");
+        if (!isGroup(groupInput.value)) {
+            setError(groupInput);
+            formValid = false;
+        }
+
+        const phoneInput = document.querySelector("#phone");
+        if (!isPhone(phoneInput.value)) {
+            setError(phoneInput);
+            formValid = false;
+        }
+
+        const addressInput = document.querySelector("#address");
+        if (!isAddress(addressInput.value)) {
+            setError(addressInput);
+            formValid = false;
+        }
+
+        const emailInput = document.querySelector("#email");
+        if (!isEmail(emailInput.value)) {
+            setError(emailInput);
+            formValid = false;
+        }
+
+        if (formValid) {
+            const container = document.querySelector("#output")
+            container.innerHTML = `<p>Ім'я: ${nameInput.value}</p>` +
+                `<p>Група: ${groupInput.value}</p>` +
+                `<p>Телефон: ${phoneInput.value}</p>` +
+                `<p>Адреса: ${addressInput.value}</p>` +
+                `<p>Пошта: ${emailInput.value}</p>`;
+        }
+    });
+</script>
+</body>
+</html>

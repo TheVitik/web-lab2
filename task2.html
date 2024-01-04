@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+    <style>
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<input type="color" id="pallet">
+<div id="table"></div>
+<script src="table.js"></script>
+<script>
+    const table = new Table(document.querySelector("#table"));
+    const colorPicker = document.querySelector('#pallet');
+    const variantNumber = 10;
+
+    document.querySelectorAll("td").forEach((td) => {
+        td.addEventListener('mouseenter', (e) => {
+            if (parseInt(e.target.innerText) === variantNumber) {
+                table.randomColor(e.target)
+            }
+        });
+        td.addEventListener('click', (e) => {
+            if (parseInt(e.target.innerText) === variantNumber) {
+                let color = colorPicker.value;
+                table.changeColor(e.target, color);
+            }
+        });
+        td.addEventListener('dblclick', (e) => {
+            let parentRow = e.target.parentNode;
+            const color = colorPicker.value;
+            table.changeRowColor(parentRow, e.target, color);
+        });
+    })
+</script>
+</body>
+</html>
